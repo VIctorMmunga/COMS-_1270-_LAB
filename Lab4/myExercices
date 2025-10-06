@@ -1,0 +1,113 @@
+
+# Jay Victor
+# Started: 2025-10-04
+# Assignment #3 - nimGrab.py
+#
+# NIMGRAB! game:
+# - Menu: play / rules / quit
+# - Choose opponent: human or computer
+# - Random pile between 20-24 items
+# - Players take 1-3 items
+# - Player who takes the last item LOSES
+# - Smart computer avoids losing
+
+print("NIMGRAB!")
+print("By: Jay Victor")
+print("[COM S 127 1]")
+print()
+import random
+
+def main():
+    min_point = 1
+    max_point = 3
+    while True:
+        user_input = input("Do you want to [p]lay, read the [r]ules, or [q]uit?: ").lower()
+        if user_input == "q":
+            print("Goodbye!")
+            break
+        elif user_input == "r":
+            print("RULES - NIMGRAB!")
+            print("- A row of items is placed (20-24 items).")
+            print(f"- On your turn you must take between {min_point} and {max_point} items.")
+            print("- You cannot take more items than are left.")
+            print("- Players alternate turns.")
+            print("- The player who takes the last item LOSES.\n")
+            continue
+        elif user_input == "p":
+            player_choice = input("Do you want to play with [h]uman or [c]omputer?: ").lower()
+            if player_choice not in ("h", "c"):
+                print("Invalid input\n")
+                continue
+
+            num_point = random.randrange(20, 25)
+            player = 1
+            print(f"\nTotal points: {num_point}")
+            print("| " * num_point + "\n")
+
+            if player_choice == "c":
+                # Human vs Computer
+                while True:
+                    # Human turn
+                    user_choice = int(input(f"How many points do you want to spend between({min_point}-{max_point}): "))
+                    if user_choice < min_point or user_choice > max_point:
+                        print("Invalid! Try again\n")
+                        continue
+                    elif user_choice > num_point:
+                        print("Out of bounds, try again...\n")
+                        continue
+                    num_point -= user_choice
+                    if num_point == 0:
+                        print("You took the last point! You lose.\n")
+                        break
+                    print(f"Points left: {num_point}")
+                    print("| " * num_point + "\n")
+
+                    # Computer turn (smart)
+                    if num_point == 1:
+                        comp = 1
+                    elif num_point <= max_point + 1:
+                        comp = num_point - 1
+                    else:
+                        remainder = (num_point - 1) % (max_point + 1)
+                        if remainder == 0:
+                            comp = random.randint(min_point, min(max_point, num_point - 1))
+                        else:
+                            comp = remainder
+                    print(f"Computer takes: {comp}")
+                    num_point -= comp
+                    if num_point == 0:
+                        print("Computer took the last point. Human wins!\n")
+                        break
+                    print(f"Points left: {num_point}")
+                    print("| " * num_point + "\n")
+
+            else:
+                # Human vs Human
+                first_player = input("Who goes first? Enter 1 or 2 (default 1): ").strip()
+                if first_player == "2":
+                    player = 2
+                else:
+                    player = 1
+
+                while True:
+                    print(f"Points left: {num_point}")
+                    print("| " * num_point + "\n")
+                    choice = int(input(f"Player {player} - How many points do you want to spend between({min_point}-{max_point}): "))
+                    if choice < min_point or choice > max_point:
+                        print("Invalid! Try again\n")
+                        continue
+                    elif choice > num_point:
+                        print("Out of bounds, try again...\n")
+                        continue
+                    num_point -= choice
+                    if num_point == 0:
+                        print(f"Player {player} took the last point and loses!")
+                        winner = 1 if player == 2 else 2
+                        print(f"Player {winner} wins!\n")
+                        break
+                    player = 2 if player == 1 else 1
+        else:
+            print("Invalid input\n")
+
+if __name__ == "__main__":
+    main()
