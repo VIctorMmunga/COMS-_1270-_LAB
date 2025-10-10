@@ -8,7 +8,7 @@
 # 
 print("NIMGRAB!")
 print("By:Victor Mmunga")
-print("[COM S 127 1]")
+print("[COM S 127 3]")
 print()
 import random
 
@@ -22,7 +22,10 @@ def main():
             break
         elif user_input == "r":
             
-            print("This is a NimGrab game, On your turn you must take between one(1) and (3)three  itemsYou cannot take more items than are left.The player who takes the last item loses.")
+            print("""This is a NimGrab game!
+                   On your turn you must take between one(1) and (3)three 
+                   items ,You cannot take more items than are left.
+                  The player who takes the last item loses.""")
             continue
         elif user_input == "p":
             player_choice = input("Do you want to play with [h]uman or [c]omputer?: ").lower()
@@ -38,7 +41,7 @@ def main():
             if player_choice == "c":
                 while True:
                     
-                    user_choice = int(input("How many points do you want to spend (1-3)"))
+                    user_choice = int(input("How many points do you want to spend (1-3): "))
                     if user_choice < min_point or user_choice > max_point:
                         print("Invalid! Try again\n")
                         continue
@@ -97,4 +100,4 @@ def main():
             print("Invalid input\n")
 
 if __name__ == "__main__":
-    main()
+    main() 
