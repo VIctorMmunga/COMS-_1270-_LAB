@@ -1,4 +1,5 @@
-#Victor Mmunga (9/4/2024)
+#Victor Mmunga (9/4/2024) 
+# good student
 #Zany Text Assignment #1
 
 #Zany text Program
