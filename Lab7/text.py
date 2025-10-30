@@ -232,3 +232,7 @@ import colorsys
 #     turn +=1
 #     turn= turn%2
 
+# 
+with open("text.txt",'r') as f:
+    for line in f:
+        print(line)

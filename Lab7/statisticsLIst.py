@@ -3,12 +3,11 @@ import sys
 
 def generateInput():
     length = random.randint(200, 500)
-    return [random.randint(1, 2000) for _ in range(length)]
-
+    return [random.randint(1, 2000) 
+            for _ in range(length)]
 def findMean(numbers):
     total = sum(numbers)
     return total / len(numbers)
-
 def findMedian(numbers):
     numbers.sort()
     n = len(numbers)
@@ -24,6 +23,5 @@ def main():
     print("Mean:", findMean(numbers))
     print("Median:", findMedian(numbers))
     sys.exit()
-
 if __name__ == "__main__":
     main()

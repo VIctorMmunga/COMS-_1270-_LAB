@@ -11,15 +11,20 @@ def get_input():
         except ValueError:
             print("Please enter a valid integer.")
     return numbers
-
 def endNum(numbers, num):
-    return [x for x in numbers if x != num] + [x for x in numbers if x == num]
-
+    result=[]
+    end=[]
+    for x in numbers:
+        if x== num:
+            end.append(x)
+        else:
+            result.append(x)
+    return result + end
 def main():
     numbers = get_input()
     num = int(input("Enter the number to move to the end: "))
+    print("Previous list:", numbers)
     print("Updated list:", endNum(numbers, num))
     sys.exit()
-
 if __name__ == "__main__":
     main()
